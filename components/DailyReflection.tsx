@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import {
   DailyReflection,
@@ -10,6 +12,14 @@ import { format } from "date-fns";
 interface DailyReflectionProps {
   onReflectionComplete?: () => void;
 }
+
+// Define a type for array fields
+type ArrayField =
+  | "achievements"
+  | "challenges"
+  | "lessonsLearned"
+  | "goalsForTomorrow"
+  | "gratitudeList";
 
 const DailyReflectionComponent: React.FC<DailyReflectionProps> = ({
   onReflectionComplete,
@@ -69,10 +79,10 @@ const DailyReflectionComponent: React.FC<DailyReflectionProps> = ({
     });
   };
 
-  const addArrayItem = (field: keyof CreateReflectionData) => {
+  const addArrayItem = (field: ArrayField) => {
     setReflection((prev) => ({
       ...prev,
-      [field]: [...prev[field], ""],
+      [field]: [...(prev[field] as string[]), ""],
     }));
   };
 

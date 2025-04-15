@@ -62,7 +62,7 @@ export function UpdateProgressDialog({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const result = await updateSkillProgress(skill.id, values.xp);
+      const result = await updateSkillProgress(skill._id, values.xp);
       toast({
         title: result.levelUp ? "Level Up!" : "Progress Updated",
         description: result.levelUp
