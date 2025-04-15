@@ -1,0 +1,692 @@
+{
+  "info": {
+    "name": "Gamification API Collection",
+    "description": "A collection of all API endpoints for the Gamification backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Register a new user"
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Login with user credentials"
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            },
+            "description": "Get current authenticated user"
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newPassword456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/change-password",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "change-password"]
+            },
+            "description": "Change user password"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Create/Update Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"bio\": \"Software Developer passionate about gamification\",\n  \"avatar\": \"https://example.com/avatar.jpg\",\n  \"interests\": [\"coding\", \"gaming\", \"learning\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "profile"]
+            },
+            "description": "Create or update user profile"
+          }
+        },
+        {
+          "name": "Get All Profiles",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "profile"]
+            },
+            "description": "Get all user profiles"
+          }
+        },
+        {
+          "name": "Get Profile By User ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/user/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "profile", "user", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Get profile by user ID"
+          }
+        },
+        {
+          "name": "Get Current Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "profile", "me"]
+            },
+            "description": "Get current user's profile"
+          }
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "profile"]
+            },
+            "description": "Delete user profile and account"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quests",
+      "item": [
+        {
+          "name": "Get All Quests",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/quests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests"]
+            },
+            "description": "Get all quests"
+          }
+        },
+        {
+          "name": "Get Quest Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "stats"]
+            },
+            "description": "Get quest statistics"
+          }
+        },
+        {
+          "name": "Get Quest By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Get quest by ID"
+          }
+        },
+        {
+          "name": "Create Quest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Complete 5 Coding Challenges\",\n  \"description\": \"Finish 5 coding challenges on the platform\",\n  \"type\": \"daily\",\n  \"difficulty\": \"medium\",\n  \"xp_reward\": 150,\n  \"duration\": \"2 hours\",\n  \"requirements\": [\"Complete coding challenges\", \"Submit solutions\"],\n  \"category\": \"coding\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests"]
+            },
+            "description": "Create a new quest"
+          }
+        },
+        {
+          "name": "Update Quest",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Complete 10 Coding Challenges\",\n  \"description\": \"Updated description\",\n  \"difficulty\": \"hard\",\n  \"xp_reward\": 200\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Update an existing quest"
+          }
+        },
+        {
+          "name": "Delete Quest",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Delete a quest"
+          }
+        },
+        {
+          "name": "Start Quest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"60d21b4667d0d8992e610c85\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/60d21b4667d0d8992e610c85/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "60d21b4667d0d8992e610c85", "start"]
+            },
+            "description": "Start a quest for a user"
+          }
+        },
+        {
+          "name": "Complete Quest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"60d21b4667d0d8992e610c85\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quests/60d21b4667d0d8992e610c85/complete",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quests", "60d21b4667d0d8992e610c85", "complete"]
+            },
+            "description": "Mark a quest as completed for a user"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Badges",
+      "item": [
+        {
+          "name": "Get All Badges",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/badges",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges"]
+            },
+            "description": "Get all badges"
+          }
+        },
+        {
+          "name": "Get Badge Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/badges/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges", "stats"]
+            },
+            "description": "Get badge statistics"
+          }
+        },
+        {
+          "name": "Get Badge By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/badges/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Get badge by ID"
+          }
+        },
+        {
+          "name": "Create Badge",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Code Master\",\n  \"description\": \"Completed 50 coding challenges\",\n  \"icon\": \"code-badge.png\",\n  \"criteria\": \"Complete 50 coding challenges\",\n  \"rarity\": \"epic\",\n  \"category\": \"achievement\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/badges",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges"]
+            },
+            "description": "Create a new badge"
+          }
+        },
+        {
+          "name": "Update Badge",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ultimate Code Master\",\n  \"description\": \"Updated badge description\",\n  \"rarity\": \"legendary\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/badges/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Update an existing badge"
+          }
+        },
+        {
+          "name": "Delete Badge",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/badges/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Delete a badge"
+          }
+        },
+        {
+          "name": "Award Badge",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"60d21b4667d0d8992e610c85\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/badges/60d21b4667d0d8992e610c85/award",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "badges", "60d21b4667d0d8992e610c85", "award"]
+            },
+            "description": "Award a badge to a user"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "stats"]
+            },
+            "description": "Get dashboard statistics"
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "users"]
+            },
+            "description": "Get all users"
+          }
+        },
+        {
+          "name": "Get User Progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/progress/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "dashboard",
+                "progress",
+                "60d21b4667d0d8992e610c85"
+              ]
+            },
+            "description": "Get user progress"
+          }
+        },
+        {
+          "name": "Get Users Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/users/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "users", "stats"]
+            },
+            "description": "Get users statistics"
+          }
+        },
+        {
+          "name": "Get Weekly Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/weekly-stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "weekly-stats"]
+            },
+            "description": "Get weekly statistics"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Skills",
+      "item": [
+        {
+          "name": "Get All Skills",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/skills",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills"]
+            },
+            "description": "Get all skills"
+          }
+        },
+        {
+          "name": "Get Skill By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/skills/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Get skill by ID"
+          }
+        },
+        {
+          "name": "Create Skill",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"JavaScript\",\n  \"description\": \"JavaScript programming language\",\n  \"level\": 1,\n  \"category\": \"programming\",\n  \"icon\": \"javascript-icon.png\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/skills",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills"]
+            },
+            "description": "Create a new skill"
+          }
+        },
+        {
+          "name": "Update Skill",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"JavaScript Advanced\",\n  \"description\": \"Advanced JavaScript programming concepts\",\n  \"level\": 3,\n  \"category\": \"programming\",\n  \"icon\": \"js-advanced-icon.png\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/skills/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Update an existing skill"
+          }
+        },
+        {
+          "name": "Delete Skill",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/skills/60d21b4667d0d8992e610c85",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills", "60d21b4667d0d8992e610c85"]
+            },
+            "description": "Delete a skill"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "yourAuthTokenHere",
+      "type": "string"
+    }
+  ]
+}
